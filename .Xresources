@@ -1,0 +1,6 @@
+*cursor: #800080
+
+!URxvt
+!URxvt.scrollBar: false
+!URxvt*font: xft:monospace:size=11
+!URxvt*cursorColor: #80080

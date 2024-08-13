@@ -1,6 +1,23 @@
-*cursor: #800080
+! reload .Xresources  $ xrdb ~/.Xresources
+!
+! URxvt Configs
+! show prompt at the top of the screen
+URxvt*geometry: 80x240+0+0  
+URxvt.scrollBar: false
+URxvt*font: xft:monospace:size=11
+URxvt*cursorColor: #228b22
+URxvt.cursorBlink: true
 
-!URxvt
-!URxvt.scrollBar: false
-!URxvt*font: xft:monospace:size=11
-!URxvt*cursorColor: #80080
+! Perl extensions
+URxvt.perl-ext-common: default,matcher,url-select,keyboard-select,resize-font
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+URxvt.colorUL: #0000ff
+!! url-select
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: /usr/bin/xdg-open
+URxvt.url-select.underline: true
+!! keyboard-select
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+
+

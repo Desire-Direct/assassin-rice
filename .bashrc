@@ -11,7 +11,7 @@ shopt -s autocd #go to ~/directory, without cd
 # customize bash prompt
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-PS1='[\u@\h \W]\$ '
+PS1='crimeboy@\h \W\$ '
 #
 # some aliases
 alias blog="cd /var/www/desire-direct.github.io"

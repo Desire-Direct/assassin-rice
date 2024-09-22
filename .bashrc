@@ -12,13 +12,21 @@ shopt -s autocd # go to ~/directory, without cd
 # customize bash prompt
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
-PS1="[\033[1;35m\]crimeboy\033[1;30m\]@\033[1;34m\]\h\[\033[0m\]] \w\$ "
+export PS1="[\[\e[0;35m\]\u\[\e[0;0m\]@\[\e[0;36m\]\h\[\e[0m\] \w]\$ " #add color to user@host 
 #
 # ALIASES
 # path 
 alias blog="cd /var/www/desire-direct.github.io"
 alias desire="cd /var/www/desire-direct"
+alias swap="cd ~/.cache/vim/swap"
 #
 # git
-alias ga='git add' # Add a file to Git.
-alias gc='git commit -m' # Commit changes to the code.
+alias ga="git add" # Add a file to Git.
+alias gc="git commit -m" # Commit changes to the code.
+
+#open Nikon DSLR images in feh
+alias fehpre="feh -. -d -S *.JPG"
+
+
+
+

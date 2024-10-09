@@ -1,0 +1,7 @@
+#! /bin/bash
+
+for i in ~/Images/DSC29*.jpg; 
+	do mv "$i" "${i/DSC29/ape}"; 
+done 
+
+

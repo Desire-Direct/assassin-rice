@@ -1,0 +1,44 @@
+#!/bin/bash
+
+#If directory exists, then do not create a new one. 
+if [ -d ~/Images/social/bagelape ]; then      
+	echo "Directory exists. New directory will not be created."
+
+#Otherwise, create a new directory.
+else      
+	echo "Project directory does not exist. Creating a new project directory..."      
+	mkdir -p ~/Images/social/bagelape
+fi
+
+#Rename images for img in ~/Images/DSCN29*.JPG; 
+for img in ~/Images/DSCN29*.JPG;
+do 
+	mv "$img" "${img/DSCN29/bagelape}"  
+done 
+
+#Rename extensions.
+for img in ~/Images/*.JPG;
+do	
+	mv "$img" "${img%.JPG}.jpg" 
+done
+
+#Move to new folder ~/Images/social/..;
+for img in ~/Images/*.jpg
+do 
+	mv "$img" ~/Images/social/bagelape/
+done
+
+#Resize *.jpg 50%.
+for img in ~/Images/social/bagelape/*.jpg; 
+do     
+	magick "$img" -resize 50% -quality 90 "${img%.jpg}-resized.jpg"
+done
+
+1296x972\>
+
+#Rotate certain landscape.jpgs.
+
+for img in ~/Images/social/bagelape/*04-resized.jpg; 
+do 
+	magick "$img" -rotate 90 "${img%.jpg}-rero.jpg"
+done 

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#Desired width of .jpg.
+SIZE=1296
+
 #If directory exists, then do not create a new one. 
 if [ -d ~/Images/social/bagelape ]; then      
 	echo "Directory exists. New directory will not be created."
@@ -28,13 +31,16 @@ do
 	mv "$img" ~/Images/social/bagelape/
 done
 
-#Resize *.jpg 50%.
+#Resize *.jpg and quality only if width is larger than the desired size.	
 for img in ~/Images/social/bagelape/*.jpg; 
 do     
+if [ $(identify -format "%[fx:w]" $img) -gt $SIZE ]; then
 	magick "$img" -resize 50% -quality 90 "${img%.jpg}-resized.jpg"
+fi
+	echo "Optimized: $img"
 done
 
-1296x972\>
+
 
 #Rotate certain landscape.jpgs.
 

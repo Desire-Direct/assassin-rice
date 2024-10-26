@@ -23,10 +23,10 @@ alias swap="cd ~/.cache/vim/swap"
 # git
 alias ga="git add" # Add a file to Git.
 alias gc="git commit -m" # Commit changes to the code.
-
-#open Nikon DSLR images in feh
-alias fehpre="feh -. -d -S *.JPG"
-
+#
+# images
+alias fehpre="feh -. -d -S *.JPG" #open Nikon DSLR images in feh
+alias shoot="import -window root ~/Images/$(date +%F_%H%M%S)screenshot.jpg" #take a screenshot of the whole window
 
 
 

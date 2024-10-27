@@ -1,7 +1,6 @@
-#!/bin/bash
+#/bin/bash
 
-#Desired width of .jpg.
-SIZE=1296
+SIZE=1296 #Desired width of .jpg.
 
 #If directory exists, then do not create a new one. 
 if [ -d ~/Images/social/bagelape ]; then      
@@ -16,10 +15,10 @@ fi
 #Rename images for img in ~/Images/DSCN29*.JPG; 
 for img in ~/Images/DSCN29*.JPG;
 do 
-	mv "$img" "${img/DSCN29/bagelape}"  
+	mv "$img" "${img/DSCN29/bagelape}" 
 done 
 
-#Rename extensions.
+#Rename extensions for elegance only.
 for img in ~/Images/*.JPG;
 do	
 	mv "$img" "${img%.JPG}.jpg" 
@@ -40,11 +39,11 @@ fi
 	echo "Optimized: $img"
 done
 
-
-
-#Rotate certain landscape.jpgs.
-
-for img in ~/Images/social/bagelape/*04-resized.jpg; 
+#Rotate a sequence of .jpgs clockwise.
+for img in ~/Images/social/bagelape/*{04..05}-resized.jpg; 
 do 
 	magick "$img" -rotate 90 "${img%.jpg}-rero.jpg"
 done 
+
+
+

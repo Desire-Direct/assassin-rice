@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 SIZE=1296 #Desired width of .jpg.
 

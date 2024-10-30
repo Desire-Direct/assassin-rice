@@ -18,3 +18,5 @@ highlight DiffText cterm=bold ctermfg=10 ctermbg=12 gui=none guifg=bg guibg=Red
 "SEARCH
 set hlsearch "highlighting on
 set ignorecase "ignore capital letters during search
+
+

@@ -3,22 +3,22 @@
 SIZE=1296 #Desired width of .jpg.
 
 #If directory exists, then do not create a new one. 
-if [ -d ~/Images/social/bagelape ]; then      
+	if [ -d ~/Images/social/DIRECTORY ]; then      
 	echo "Directory exists. New directory will not be created."
 
 #Otherwise, create a new directory.
 else      
 	echo "Project directory does not exist. Creating a new project directory..."      
-	mkdir -p ~/Images/social/bagelape
+	mkdir -p ~/Images/social/DIRECTORY
 fi
 
-#Rename images for img in ~/Images/DSCN29*.JPG; 
+#Rename images for img in ~/Images/DSCN29*.JPG;
 for img in ~/Images/DSCN29*.JPG;
 do 
-	mv "$img" "${img/DSCN29/bagelape}" 
+	mv "$img" "${img/DSCN29/FILE}"
 done 
 
-#Rename extensions for elegance only.
+#Rename extensions for aesthetics.
 for img in ~/Images/*.JPG;
 do	
 	mv "$img" "${img%.JPG}.jpg" 
@@ -27,11 +27,14 @@ done
 #Move to new folder ~/Images/social/..;
 for img in ~/Images/*.jpg
 do 
-	mv "$img" ~/Images/social/bagelape/
+	mv "$img" ~/Images/social/DIRECTORY/ 
 done
 
+
+
+
 #Resize *.jpg and quality only if width is larger than the desired size.	
-for img in ~/Images/social/bagelape/*.jpg; 
+for img in ~/Images/social/DIRECTORY/*.jpg; 
 do     
 if [ $(identify -format "%[fx:w]" $img) -gt $SIZE ]; then
 	magick "$img" -resize 50% -quality 90 "${img%.jpg}-resized.jpg"
@@ -40,10 +43,17 @@ fi
 done
 
 #Rotate a sequence of .jpgs clockwise.
-for img in ~/Images/social/bagelape/*{04..05}-resized.jpg; 
+for img in ~/Images/social/DIRECTORY/*{04..10}-resized.jpg; 
 do 
 	magick "$img" -rotate 90 "${img%.jpg}-rero.jpg"
 done 
 
+#Remove created directory after 1m.
+#after script started to run
+sleep 60 &&
+for dir in ~/Images/social/* 
+do rm -r "$dir"
+echo "60s have elapsed"
+done
 
 

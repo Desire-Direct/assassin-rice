@@ -1,4 +1,6 @@
 #!/bin/bash
+#author=cute-count
+#purpose=thirst for annihilation
 
 SIZE=1296 #Desired width of .jpg.
 
@@ -8,14 +10,14 @@ SIZE=1296 #Desired width of .jpg.
 
 #Otherwise, create a new directory.
 else      
-	echo "Project directory does not exist. Creating a new project directory..."      
+	echo "Directory does not exist. Creating a new directory .."      
 	mkdir -p ~/Images/social/DIRECTORY
 fi
 
 #Rename images for img in ~/Images/DSCN29*.JPG;
 for img in ~/Images/DSCN29*.JPG;
 do 
-	mv "$img" "${img/DSCN29/FILE}"
+	mv "$img" "${img/DSCN29/IMAGE}"
 done 
 
 #Rename extensions for aesthetics.
@@ -29,9 +31,6 @@ for img in ~/Images/*.jpg
 do 
 	mv "$img" ~/Images/social/DIRECTORY/ 
 done
-
-
-
 
 #Resize *.jpg and quality only if width is larger than the desired size.	
 for img in ~/Images/social/DIRECTORY/*.jpg; 
@@ -48,12 +47,31 @@ do
 	magick "$img" -rotate 90 "${img%.jpg}-rero.jpg"
 done 
 
-#Remove created directory after 1m.
-#after script started to run
-sleep 60 &&
-for dir in ~/Images/social/* 
-do rm -r "$dir"
-echo "60s have elapsed"
+#Start countdown to remove created directory after 10s.
+echo "Purging from rubbish, please wait .."
+for i in {10..1}; 
+do echo "$i " 
+sleep 1 
 done
+
+for dir in ~/Images/social/* 
+do 
+	rm -r "$dir" 
+echo "Pouff!"
+done
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

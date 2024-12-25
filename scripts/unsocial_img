@@ -1,6 +1,6 @@
 #!/bin/bash
 #author=cute-count
-#purpose=thirst for annihilation
+#purpose=quench thirst for annihilation
 
 SIZE=1296 #Desired width of .jpg.
 
@@ -47,17 +47,17 @@ do
 	magick "$img" -rotate 90 "${img%.jpg}-rero.jpg"
 done 
 
-#Start countdown to remove created directory after 10s.
+#Start countdown and remove created directory after 10s.
 echo "Purging from rubbish, please wait .."
 for i in {10..1}; 
-do echo "$i " 
-sleep 1 
+	do echo "$i" 
+	sleep 1 
 done
 
 for dir in ~/Images/social/* 
 do 
 	rm -r "$dir" 
-echo "Pouff!"
+	echo "Pouff!"
 done
 
 

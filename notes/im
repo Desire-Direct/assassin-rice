@@ -1,0 +1,26 @@
+#make file executable
+chmod +x filename.sh
+#
+#
+#ImageMagick
+#
+#check if img has alpha channel
+-format %A img.png
+>Blend #has alpha channel
+#check if img has transparency
+identify -format '%[opaque]' img.png
+>False #has transparency
+
+
+
+my image is Grayscale image
+background transparent (Alpha channel?)
+make all the grayscale pixels into color
+
+what is gamma?
+
+
+magick d_d-logo.png -fill yellow out_test.png 
+
+
+

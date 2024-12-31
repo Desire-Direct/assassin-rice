@@ -11,16 +11,9 @@ chmod +x filename.sh
 identify -format '%[opaque]' img.png
 >False #has transparency
 
+#inverse color by -negate operator
+https://usage.imagemagick.org/color_mods/
 
-
-my image is Grayscale image
-background transparent (Alpha channel?)
-make all the grayscale pixels into color
-
-what is gamma?
-
-
-magick d_d-logo.png -fill yellow out_test.png 
 
 
 

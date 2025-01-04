@@ -4,6 +4,7 @@ chmod +x filename.sh
 #
 #ImageMagick
 #
+#d_d-LOGO
 #check if img has alpha channel
 -format %A img.png
 >Blend #has alpha channel
@@ -11,9 +12,27 @@ chmod +x filename.sh
 identify -format '%[opaque]' img.png
 >False #has transparency
 
+-transparent white #replaces white background with trans but too rough
+#add 
+-fuzz 6% (for blog logo)
+
 #inverse color by -negate operator
 https://usage.imagemagick.org/color_mods/
+#> transparency into color and vice versa
+
+####crop
+identify
+2480x3507 (widthxheight)
+offset (0+0 /x+y in left upper corner, beginning of 'crop rectangle')
+
+crop +repage (removes virtual canvas)
+
+magick d_d-logo_org.jpg -crop 1700x1550+500+500 +repage crop.png
+
+magick crop.png -rotate -90 -trim +repage -resize 50% d_d-logo.png
 
 
 
 
+magick star.gif -bordercolor yellow -border 0  star_background.gif
+#turned transparency into yellow

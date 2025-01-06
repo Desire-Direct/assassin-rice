@@ -4,6 +4,9 @@ chmod +x filename.sh
 #
 #ImageMagick
 #
+#difference canvas: and xc:
+#xc: solid color canvas
+
 #d_d-LOGO
 #check if img has alpha channel
 -format %A img.png
@@ -20,6 +23,9 @@ identify -format '%[opaque]' img.png
 https://usage.imagemagick.org/color_mods/
 #> transparency into color and vice versa
 
+#turn transparency into yellow
+magick star.gif -bordercolor yellow -border 0 star_background.gif
+
 ####crop
 identify
 2480x3507 (widthxheight)
@@ -31,8 +37,48 @@ magick d_d-logo_org.jpg -crop 1700x1550+500+500 +repage crop.png
 
 magick crop.png -rotate -90 -trim +repage -resize 50% d_d-logo.png
 
+#####vetroun#######
+DSC_0001.JPG JPEG 3008x2000 3008x2000+0+0 8-bit sRGB 2.51804MiB 0.000u 0:00.001
+
+#before turning to grayscale enable transparency
+xcolor #colorpicker
+#d17e88 rgb(209, 126, 136)
+#d27a86 rgb(210, 122, 134) 
+
+#######PERLMAGICK#################
+#perl images take a lot of memory
+#destroys object
+undef $image;
+#retain the final image?
+@$image = ();
+
+#basic syntax?
+$imgs->Set(variable name=>variable value);
+
+#stdout (standard output) displayed on the terminal screen
 
 
 
-magick star.gif -bordercolor yellow -border 0  star_background.gif
-#turned transparency into yellow
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

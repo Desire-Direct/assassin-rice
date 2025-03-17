@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo rsync -aAXHv --delete --exclude='/dev/*' --exclude='/proc/*' --exclude='/sys/*' --exclude='/tmp/*' --exclude='/run/*' --exclude='/mnt/*' --exclude='/media/*' --exclude='/lost+found/' --exclude='/home/*/.thumbnails/*' --exclude='/home/*/.cache/mozilla/*' --exclude='/home/*/.cache/chromium/*' / /mnt/encrypted

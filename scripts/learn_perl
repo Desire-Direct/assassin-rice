@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+#
+use strict;
+use warnings;
+
+my $broken_email = "ca_jaeger\@proton.me"; 
+# double-quoted is better practice?, if more complicated string; otherwise use escape character \; 
+
+my $thought = "fuck you\n\n\n"; # this \n does not output a newline;
+my $word = "i love you\n";
+
+my $ass = chomp($thought, $word); # what does chomp do?
+
+print "\n$thought,\t1GB\n\n $word\t1TB\n,\n $broken_email\n";
+print "Number of characters removed: $ass\n";
+
+
+
+
+
+
+

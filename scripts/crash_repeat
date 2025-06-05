@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+#
+use strict; # prevents creating global variables
+use warnings;
+
+# mnemonic for perl variables: $calar, @rray, %ash;
+
+# from http://www.ccru.net/declab.htm
+# the Pandemonium consists of the Numogram and
+# an array (Matrix) containing a list, which starts with the integer 0, counting by 1; 
+#
+# hash, instead of indexed as in array, holds values by unique strings called hash keys (key-value pairs in no particular order)
+
+# is crash.txt a hash barrel, with many keys for duplicated value?
+# For Vaughan [the unique] wounds are the keys to a new sexuality born from a perverse technology.
+
+open my $crash, '<', 'crash.txt' or die "$!\n"; 
+open my $report, '>', "crash_report.txt" or die "$!\n"; 
+
+my %freq;
+
+#function split//, splits string(text) into array(words) with ''; to ignore blank space > 1, use /\s+/; use /\w+/g for to evade punctuation, prints only alphanumeric patterns;
+while (my $line = <$crash>) {
+	chomp $line;
+
+	foreach my $str ($line =~ /\w+/g)
+{
+	$freq{$str}++; }
+}
+
+foreach my $str (reverse sort { $freq{$a} <=> $freq{$b} } keys %freq) 
+{
+	printf {$report} "%-31s %s\n", $str, $freq{$str};
+}
+
+close $crash;
+close $report;
+print "Job done.\n";
+
+
+#how to print words upper case lower case

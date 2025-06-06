@@ -20,13 +20,11 @@ open my $report, '>', "crash_report.txt" or die "$!\n";
 my %freq;
 
 #function split//, splits string(text) into array(words) with ''; to ignore blank space > 1, use /\s+/; use /\w+/g for to evade punctuation, prints only alphanumeric patterns;
-while (my $line = <$crash>) {
-	chomp $line;
+while (<$crash>) {
 
-	foreach my $str ($line =~ /\w+/g)
-{
-	$freq{$str}++; }
-}
+
+		$freq{ lc $_ }++ for split ' ';
+	}
 
 foreach my $str (reverse sort { $freq{$a} <=> $freq{$b} } keys %freq) 
 {
@@ -38,4 +36,7 @@ close $report;
 print "Job done.\n";
 
 
-#how to print words upper case lower case
+# lc function turns all upper- into lowercase letters;
+#
+# i need hyphen but no punctuation, 
+# but if automobiles with ' only once then ?

@@ -15,7 +15,7 @@ use warnings;
 # For Vaughan [the unique] wounds are the keys to a new sexuality born from a perverse technology.
 
 open my $crash, '<', 'crash.txt' or die "$!\n"; 
-open my $report, '>', "crash_report.txt" or die "$!\n"; 
+open my $report, '>', 'crash_report.txt' or die "$!\n"; 
 
 my %freq;
 
@@ -28,7 +28,7 @@ while (<$crash>) {
 
 foreach my $str (reverse sort { $freq{$a} <=> $freq{$b} } keys %freq) 
 {
-	printf {$report} "%-31s %s\n", $str, $freq{$str};
+	printf {$report} "%-29s %s\n", $str, $freq{$str}; # 29 is format space between words and numbers; not sure what s does;
 }
 
 close $crash;
@@ -39,4 +39,11 @@ print "Job done.\n";
 # lc function turns all upper- into lowercase letters;
 #
 # i need hyphen but no punctuation, 
-# but if automobiles with ' only once then ?
+# but if automobile 's with ' only once then ?
+#
+# remove character after '? 
+#
+
+
+# \w includes alphanumeric, 
+# hyphen in middle of word

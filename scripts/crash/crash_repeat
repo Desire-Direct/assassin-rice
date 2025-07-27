@@ -1,0 +1,54 @@
+#!/usr/bin/perl
+#
+use strict; 
+use warnings;
+
+# mnemonic for perl variables: $calar, @rray, %ash;
+#
+# array is indexed and contains a list, which starts with the integer 0, counting by 1; 
+#
+# %freq is a hash barrel, with many unique strings (hash keys) associated with the count (value)
+# (key-value pairs in no particular order)
+
+# For Vaughan [the unique] wounds are the keys to a new sexuality born from a perverse technology.
+
+
+open my $crash, '<', 'crash.txt' or die "$!\n"; 
+open my $report, '>', 'crash_report.txt' or die "$!\n"; 
+
+my %freq;
+
+# function split//, splits string(text) into array(words) with ''; 
+# to ignore blank space >1, use /\s+/; however, with the split 'onwhitespace' function, 
+# punctuation and thus possessive forms of words remain, e.g. single standing vaughan would appear x353 only; 
+
+
+
+
+#use /\w+/g for to evade punctuation, prints only alphanumeric patterns; i don't need numbers, 
+
+
+while (<$crash>) {
+	
+		$freq{ lc $1 }++ while /(\w+)/g; 
+
+# lc function turns all upper- into lowercase letters; and then stores them in $1?
+		
+
+
+}
+
+foreach my $str (reverse sort { $freq{$a} <=> $freq{$b} } keys %freq) 
+{
+	printf {$report} "%-29s %s\n", $str, $freq{$str}; # 29 is format space between words and numbers; not sure what s does;
+}
+
+close $crash;
+close $report;
+print "Job done.\n";
+
+
+# however i need  hyphen in middle of word!
+
+#		$freq{ lc $1 }++ while /(\w+)/g; 
+

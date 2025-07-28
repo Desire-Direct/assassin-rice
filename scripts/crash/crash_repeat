@@ -30,9 +30,10 @@ my %freq;
 
 while (<$crash>) {
 	
-		$freq{ lc $1 }++ while /(\w+)/g; 
+		$freq{ lc $1 }++ while /(\w+)/g;
 
-# lc function turns all upper- into lowercase letters; and then stores them in $1?
+# lc function turns all upper- into lowercase letters; and then stores them in $1? 
+		# w is shortcut for [A-Za-z0-9_] (as of 3rd edition, p. 106), + modifier?
 		
 
 
@@ -48,7 +49,7 @@ close $report;
 print "Job done.\n";
 
 
-# however i need  hyphen in middle of word!
+# alas, i need to keep hyphen in the middle of string! hyphens are special inside a [character class] and need to be backlashed. 
 
-#		$freq{ lc $1 }++ while /(\w+)/g; 
+#		$freq{ lc $1 }++ while ; 
 

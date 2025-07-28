@@ -1,0 +1,84 @@
+#!/usr/bin/perl
+#
+use strict;
+use warnings;
+
+# regular expressions (RegEx), its
+# match operator // does not search for /string/ as a ()hole, but to (un)match patterns of indivisible atoms; 
+# note that SPACE IS also a character;
+# #atomization
+# not to be confused with globs *.txt;
+
+# the while loop repeats a block of code as long as a condition is true
+
+
+# Regex Operator =~, Negated Regex Operator !~ 
+#
+# metacharacters, the wildcard character (.) $String =~ /t..s/; two characters between them
+
+# backlash is escape character
+
+
+# the filehandle(<$CAPITAL>) is a gate between the program and files, which opens and closes for file manipulation;
+
+#
+
+open my $CRASH, '<', 'crash.txt' or die "Cannot open, is jammed! $!\n"; 
+open my $INVESTIGATION, '>>', 'crash_investigation.txt' or die "$!\n"; 
+
+#my $pain = /;
+
+
+while (<$CRASH>) {     
+	 
+if  (/pain[^t]/); # ^ (caret) negates t, to escape "PainTwork"; 
+
+
+	
+	print {$INVESTIGATION}	; 
+
+# print "There is no pain.\n" if !~ m/pain/;
+
+
+ #print  $str;
+
+
+close $CRASH;
+close $INVESTIGATION;
+
+=pod 
+
+# pattern pain (also painful), not followed by t
+ #print all sentences with pain, ends with a dot? and starts with a space. 
+^ is an anchor begin
+.$
+
+
+my $_ = "sex technology";
+if (\n) {
+	print $investigation if
+}
+
+
+ my $word = 'penis';
+ 
+ print $investigation "Found a penis\n\t\a!" if $word =~ /penis/; 
+
+
+ 
+ 
+
+ print "There is no pain.\n" if !~ m/pain/;
+
+
+
+
+ sub main {     
+	open(FH, $file) or die("File $file not found");          
+
+	while(my $String = <FH>) {         
+		if($String =~ /\bs...n\b/)         
+		{             
+			print "$String \n";         }     
+	}     
+	close(FH); } main(); =cut # # #how to print sex technology in one line?

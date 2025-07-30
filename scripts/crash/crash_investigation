@@ -21,37 +21,26 @@ use warnings;
 
 # the filehandle(<$CAPITAL>) is a gate between the program and files, which opens and closes for file manipulation;
 
-#
-
+# the die function stops the program in case of fatal errors;
 open my $CRASH, '<', 'crash.txt' or die "Cannot open, is jammed! $!\n"; 
 open my $INVESTIGATION, '>>', 'crash_investigation.txt' or die "$!\n"; 
 
-#my $pain = /;
+while (my $pain = <$CRASH>) {     
 
-
-while (<$CRASH>) {     
-	 
-if  (/pain[^t]/); # ^ (caret) negates t, to escape "PainTwork"; 
-
-
+if  ($pain =~ /pain[^t]/) # ^ (caret) negates t, to escape "PainTwork"; 
 	
-	print {$INVESTIGATION}	; 
-
-# print "There is no pain.\n" if !~ m/pain/;
-
-
- #print  $str;
+{	
+	print $INVESTIGATION $pain;
+	}
+}
 
 
 close $CRASH;
 close $INVESTIGATION;
+	
 
 =pod 
-
-# pattern pain (also painful), not followed by t
- #print all sentences with pain, ends with a dot? and starts with a space. 
-^ is an anchor begin
-.$
+print if sex and technology in one sentence. starts with blank space, ends with dot. 
 
 
 my $_ = "sex technology";
@@ -68,7 +57,6 @@ if (\n) {
  
  
 
- print "There is no pain.\n" if !~ m/pain/;
 
 
 

@@ -23,12 +23,14 @@ use warnings;
 
 # the die function stops the program in case of fatal errors;
 open my $CRASH, '<', 'crash.txt' or die "Cannot open, is jammed! $!\n"; 
-open my $INVESTIGATION, '>>', 'crash_investigation.txt' or die "$!\n"; 
+open my $INVESTIGATION, '>', 'crash_investigation.txt' or die "$!\n"; 
 
 while (my $pain = <$CRASH>) {     
 
-if  ($pain =~ /pain[^t]/) # ^ (caret) negates t, to escape "PainTwork"; 
+if  ($pain =~ s/pain[^t]/joy/) # ^ (caret) negates t, to escape "PainTwork"; 
 	
+#here joyful, the f or space is missing, why?
+#also caret +M?
 {	
 	print $INVESTIGATION $pain;
 	}
@@ -39,24 +41,41 @@ close $CRASH;
 close $INVESTIGATION;
 	
 
+# subsitute pain with joy,  s/pain/joy/
+# how to make a break after annotation?
+
+
 =pod 
-print if sex and technology in one sentence. starts with blank space, ends with dot. 
+
+# subroutine, print if sex and technology in one sentence. starts with blank space, ends with dot. 
 
 
-my $_ = "sex technology";
-if (\n) {
-	print $investigation if
+	my $base = "sex, technology";
+sub sex_tex {
+
+while ($base = <$CRASH>) {     
+	
+if (/sex \+ technology) {  # matches sex, space, ONE "word", space, technology;
+
+	print $INVESTIGATION  $base;
+}
 }
 
+}
+sex_tex();
+
+
+
+
+ 
+ 
+
+
+"Matched: |$`<$&>$'|\n"
 
  my $word = 'penis';
  
  print $investigation "Found a penis\n\t\a!" if $word =~ /penis/; 
-
-
- 
- 
-
 
 
 

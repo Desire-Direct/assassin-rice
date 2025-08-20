@@ -18,30 +18,31 @@ open my $report, '>', 'crash_report.txt' or die "$!\n";
 
 my %freq;
 
-# function split//, splits string(text) into array(words) with ''; 
+# function split/PATTERN/, splits string(text) into array(words) with ''; 
 # to ignore blank space >1, use /\s+/; however, with the split 'onwhitespace' function, 
 # punctuation and thus possessive forms of words remain, e.g. single standing vaughan would appear x353 only; 
-
-
-
-
-#use /\w+/g for to evade punctuation, prints only alphanumeric patterns; i don't need numbers, 
+#use /\w+/g for to evade punctuation, prints only alphanumeric patterns; 
 
 
 while (<$crash>) {
 	
 		$freq{ lc $1 }++ while /(\w+)/g;
+;
 
-# lc function turns all upper- into lowercase letters; and then stores them in $1? 
-		# w is shortcut for [A-Za-z0-9_] (as of 3rd edition, p. 106), + modifier?
-		
+		# lc function turns all upper- into lowercase letters; and then stores them in $1? 
+		# backreference \ to match double-letters?
+		# w is shortcut for [character class] [A-Za-z0-9_] (as of 3rd edition, p. 106);
+	        # the + is modifier /quantifier? for strings, seperated by spaces; 		
+		# g turns any arbitrary whitespace into single space (p.123);
 
+# alas, i need to keep hyphen in the middle of string! hyphens are special inside a [character class] and need to be backlashed. 
+		#what bout french special characters?
 
 }
 
 foreach my $str (reverse sort { $freq{$a} <=> $freq{$b} } keys %freq) 
 {
-	printf {$report} "%-29s %s\n", $str, $freq{$str}; # 29 is format space between words and numbers; not sure what s does;
+	printf {$report} "%-29s %s\n", $str, $freq{$str}; # 29 is the field width between the columns of words and frequency;
 }
 
 close $crash;
@@ -49,7 +50,13 @@ close $report;
 print "Job done.\n";
 
 
-# alas, i need to keep hyphen in the middle of string! hyphens are special inside a [character class] and need to be backlashed. 
 
-#		$freq{ lc $1 }++ while ; 
+#	$freq{ lc $1 }++ while /(\w+)/g;
+#
+#
 
+
+# character classes in square brackets, parantheses four grouping patterns (and memory?)!
+
+
+#test (/(\\-) (\w+)/g) what does g do

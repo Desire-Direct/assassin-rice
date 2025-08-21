@@ -7,9 +7,7 @@ use warnings;
 #
 # array is indexed and contains a list, which starts with the integer 0, counting by 1; 
 #
-# %freq is a hash barrel, with many unique strings (hash keys) associated with the count (value)
-# (key-value pairs in no particular order)
-
+# %freq is a hash barrel, with many unique strings (hash keys) associated with the count (value) - key-value pairs in no particular order;
 # For Vaughan [the unique] wounds are the keys to a new sexuality born from a perverse technology.
 
 
@@ -35,7 +33,6 @@ while (<$crash>) {
 	        # the + is modifier /quantifier? for strings, seperated by spaces; 		
 		# g turns any arbitrary whitespace into single space (p.123);
 
-# alas, i need to keep hyphen in the middle of string! hyphens are special inside a [character class] and need to be backlashed. 
 		#what bout french special characters?
 
 }
@@ -56,7 +53,9 @@ print "Job done.\n";
 #
 
 
-# character classes in square brackets, parantheses four grouping patterns (and memory?)!
+# Alas, need to keep hyphens in the middle of a string! hyphens are metacharacters to define range inside a [character class: a-z]
+#
+######TESTS#####
+# /(\w+-\w+)/g; prints all hyphenated words: 477 lines (linebreak?); reveals also I need numerals, e.g. 40-year; middle-aged appears 13 x;
+# (\w+\-)/g; prints all hyphen-entailed words: 291 lines; middle- appears 14 x, but no aged;
 
-
-#test (/(\\-) (\w+)/g) what does g do

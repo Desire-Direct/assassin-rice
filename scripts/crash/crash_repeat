@@ -4,31 +4,29 @@ use strict;
 use warnings;
 
 # mnemonic for perl variables: $calar, @rray, %ash;
-#
 # array is indexed and contains a list, which starts with the integer 0, counting by 1; 
 #
+# the die function kills the program in case of fatal errors;
+open my $CRASH, '<', 'crash.txt' or die "$!\n"; 
+open my $REPORT, '>', 'crash_report.txt' or die "$!\n"; 
+#
 # %freq is a hash barrel, with many unique strings (hash keys) associated with the count (value) - key-value pairs in no particular order;
-# For Vaughan [the unique] wounds are the keys to a new sexuality born from a perverse technology.
-
-
-open my $crash, '<', 'crash.txt' or die "$!\n"; 
-open my $report, '>', 'crash_report.txt' or die "$!\n"; 
-
+# For Vaughan (the unique) wounds are the keys to a new sexuality born from a perverse technology.
 my %freq;
-
-# function split/PATTERN/, splits string(text) into array(words) with ''; 
-# to ignore blank space >1, use /\s+/; however, with the split 'onwhitespace' function, 
-# punctuation and thus possessive forms of words remain, e.g. single standing vaughan would appear x353 only; 
-#use /\w+/g for to evade punctuation, prints only alphanumeric patterns; 
-
-
-while (<$crash>) {
-	
-		$freq{ lc $1 }++ while /(\w+)/g;
+#
+# the while loop repeats a block of code as long as a condition is true;
+while (<$CRASH>) {
+#
+# match operator // does not search for /string/ as a ()hole, but (un)matches patterns of indivisible atoms; note that SPACE IS also a character;
+# #atomization
+# to ignore blank space >1, use /\s+/ operator; however, with the split 'onwhitespace' function, punctuation and thus possessive forms of words remain, e.g. single standing vaughan would appear x353 only; 
+# use /\w+/g to evade punctuation, prints only alphanumeric patterns +_; 
+	# lc function turns all upper- into lowercase letters; and then stores them in $1? 
+	$freq{ lc $1 }++ while /(\w+)/g;
 ;
 
-		# lc function turns all upper- into lowercase letters; and then stores them in $1? 
-		# backreference \ to match double-letters?
+
+				# backreference \ to match double-letters?
 		# w is shortcut for [character class] [A-Za-z0-9_] (as of 3rd edition, p. 106);
 	        # the + is modifier /quantifier? for strings, seperated by spaces; 		
 		# g turns any arbitrary whitespace into single space (p.123);
@@ -39,16 +37,17 @@ while (<$crash>) {
 
 foreach my $str (reverse sort { $freq{$a} <=> $freq{$b} } keys %freq) 
 {
-	printf {$report} "%-29s %s\n", $str, $freq{$str}; # 29 is the field width between the columns of words and frequency;
+	printf {$REPORT} "%-29s %s\n", $str, $freq{$str}; # 29 is the field width between the columns of words and frequency;
 }
 
-close $crash;
-close $report;
+close $CRASH;
+close $REPORT;
 print "Job done.\n";
 
 
 
-#	$freq{ lc $1 }++ while /(\w+)/g;
+#	$freq{ lc $1 }++ while (\w+)/g;
+;
 #
 #
 
@@ -57,5 +56,9 @@ print "Job done.\n";
 #
 ######TESTS#####
 # /(\w+-\w+)/g; prints all hyphenated words: 477 lines (linebreak?); reveals also I need numerals, e.g. 40-year; middle-aged appears 13 x;
-# (\w+\-)/g; prints all hyphen-entailed words: 291 lines; middle- appears 14 x, but no aged;
+# (\w+\-)/g; prints hyphen-entailed words: 291? lines; middle- appears 14 x, but no aged;
+# (-\w+)/g; other way round prints 373 lines; -aged: 13 x; middle: 0 x;
+# (\w-+)/g; prints single letter followed by hyphen; r- appears 169;
+# (\w+[w-])/g; interesting one, 437 lines; "ow" is most frequently matched (130 x), but otherwise mostly hyphen-entailed strings;
+
 

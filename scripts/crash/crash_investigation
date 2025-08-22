@@ -3,13 +3,9 @@
 use strict;
 use warnings;
 
-# regular expressions (RegEx), its
-# match operator // does not search for /string/ as a ()hole, but to (un)match patterns of indivisible atoms; 
-# note that SPACE IS also a character;
-# #atomization
-# not to be confused with globs *.txt;
 
-# the while loop repeats a block of code as long as a condition is true
+
+
 
 
 # Regex Operator =~, Negated Regex Operator !~ 
@@ -21,7 +17,6 @@ use warnings;
 
 # the filehandle(<$CAPITAL>) is a gate between the program and files, which opens and closes for file manipulation;
 
-# the die function stops the program in case of fatal errors;
 open my $CRASH, '<', 'crash.txt' or die "Cannot open, is jammed! $!\n"; 
 open my $INVESTIGATION, '>', 'crash_investigation.txt' or die "$!\n"; 
 

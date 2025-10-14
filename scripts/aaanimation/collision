@@ -1,0 +1,101 @@
+#!/usr/bin/perl
+#
+use strict; 
+use warnings; 
+use Term::Animation; 
+use Term::Animation::Entity; 
+use Time::HiRes qw(time); 
+use Data::Dumper; 
+use Curses; 
+
+main(); 
+
+sub add_bat {     
+
+my $shape = q#
+/--v--\
+   "
+me#;
+my $mask = q#
+MbbybbM
+   w  
+#;
+
+	my ($anim, $y) = @_;         # what is stored in variable y?
+	my $animal = $anim->new_entity(         
+	#type => 'animal',         
+	position 	=> [3, $y, 21],         
+	shape 		=> $shape,                     
+        color 		=> $mask,         
+	callback_args 	=> [1, 1, 0, -1],         
+	#die_offscreen => 0,         # entity should be killed if it goes off the screen? default 0;
+	coll_handler 	=> \&animal_collision,         
+	physical 	=> 1,     
+	wrap 		=> 1, # animation loop
+	); 
+}
+
+sub animal_collision{  
+       	my ($animal, $anim) = @_;   
+	my $collisions = $animal->collisions();  
+	# return unless defined $collisions;   
+	foreach my $col_obj (@{$collisions}) {     
+	# Get the current x direction from the callback_args     
+	my $x_dir = $animal->callback_args->[0];     
+	
+	# Reverse the direction     
+	$animal->callback_args->[0] = -$x_dir;   
+	} 
+} 
+
+sub add_background {     
+	my ($anim, $screen_width, $screen_height) = @_;     
+	my $half_width = int($screen_width / 2);     
+	my $ground_level = int($screen_height * 0.7);     
+
+	for my $y (0..($screen_height)) {       
+		$anim->new_entity(             
+			shape 		=> ['|'],             
+			position 	=> [$half_width, $y, 21],             
+			color 		=> ['w'],             
+			physical 	=> 1,         
+		);     
+	} 
+} 
+
+sub main {   
+	my $anim = Term::Animation->new();   
+	$anim->color(1); # red, green, blue, cyan, magenta, yellow, black, white;
+	halfdelay(1); # set delay for getch (curses), the higher the number the slower;
+	my $paused = 0;   # what does this do?
+	
+while(1) {       
+		my $screen_width = $anim->width();       
+		my $screen_height = $anim->height();       
+		my $half_width = int($screen_width / 2);       
+		my $ground_level = int($screen_height * 0.7);       
+		
+		add_background($anim, $screen_width, $screen_height);       
+		my $animal = add_bat($anim, ($ground_level - 1));      
+		#my $dog = add_dog($anim, ($ground_level - 1));      
+
+# animation loop       
+	while(1) {           
+		my $current_time = time();           # return?
+		#addstr ($current_time);
+		
+		# run and display a single animation frame           
+		$anim->animate() unless($paused);           
+		
+		# use getch to control the frame rate, and get input at the same time;           
+			my $input = getch();           
+			if($input eq 'q') { quit(); }           
+			if($input eq 'r' || $input eq KEY_RESIZE()) { last; }           
+			if($input eq 'p') { $paused = !$paused; }       
+		}       
+		$anim->update_term_size();       
+		$anim->remove_all_entities();   
+	}   
+$anim->end(); 
+}
+

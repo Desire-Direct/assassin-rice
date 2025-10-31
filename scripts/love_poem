@@ -1,0 +1,74 @@
+#!/usr/bin/perl
+#
+#cute-count <ca_jaeger@proton.me>
+#
+use strict;
+use warnings;
+
+# Expressions are particular in Perl ambiguous, 51
+#
+my $crushed_soul = "does not exist";  
+my $feeling = 11 / 2;
+my $thought = $feeling * 2;	# (11)
+	
+	if ( $feeling gt $thought ) {	# !, the unary not operator
+
+print "\nAlas! Is this sickness?\n";
+	
+	}	else {
+print "$thought comes after $feeling in sorted order\n"	
+}	
+#	
+#
+my $flesh = "Aye, I am alive\n\n\n"; # this \n does not output a newline;
+my $desire = "watch you drown in blood\n";
+
+my $darkness = chomp($flesh); # chomp works on variable
+print "\n$desire,\t1TB\n\n $flesh
+\tdeath\n,\n $crushed_soul\n";
+print "Number of characters removed: $darkness\n\n";
+
+#
+# quoted words, discarded whitespace; any punctuation can be used as delimiter;
+my @thought = qw! Bataille\!
+	/boot
+pleasure and
+	/root 
+/home ! 
+;
+print "@thought\n\n";
+#
+# subroutine inherits the caller's @_
+sub conscious {
+	my $soul += 6; # binary assignment operator ($soul = $soul + 6), $soul not defined;
+	print "Proceed with prudence, and mind number $soul!\n";
+	}
+conscious();
+#
+#
+# foreach control structure
+	foreach my $kiss (qw/ good contagious deadly /) {
+	print "\n\tOne kiss is $kiss\n";
+}
+	foreach (1..3) {
+		print "I'll give you $_!\n";
+	}
+# reverse operator
+foreach my $inside (qw/ blood flesh bone /) {
+	my @inside = 6..3;
+my @outside = reverse(@inside);
+print "You'll have @_";
+}
+
+#
+# while control structure
+while (<STDIN>) {
+		print "I saw $_";
+	}
+
+
+
+                                                                     
+
+
+

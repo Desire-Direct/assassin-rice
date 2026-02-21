@@ -1,0 +1,49 @@
+DSP (digital signal processing) for live music performance
+object oriented programming, much closer to the experience of manipulating things in the physical world. 
+
+real-time program, audio signals FLOW IN A CONTINOUS STREAM???  
+LIES! more correctly it's called low latency!
+latency=time between in /output
+chapter3: in real time necessary to buffer; can be changed in Audio Settings->delay
+
+audio examples in /usr/lib/pd/doc/3.audio.examples
+test MIDI in- and output in preferences!!! 
+What is MIDI or Musical Instrument Digital Interface?  
+MIDI is a standard digital signal (zeros and ones), connecting devices e.g. synth with a computer?
+
+what is sinusoid again?
+
+pd is implementation environment.
+patch -> 1 object(rectangle), 2 message(flag), 3 number/GUI(punch) box;
+
+inlet /outlet to connect
+
+Edit mode -> Ctrl+e
+https://msp.ucsd.edu/techniques/latest/book-html/node16.html#fig01.10)
+thin lines = carry sporadic messages (appear at specific but possible unpredictable instants in time??)
+thick lines = carry digital audio signals 
+
++ object outputs messages
+*~ object outputs signal
+object boxes with signal input /output contain trailing tilde ~
+
+in play mode, change value in number object priority 8 scheduling failed.
+what is a float object?
+
+***********
+error: priority 8 scheduling failed.
+Added user to audio group -> problem persists.
+http://tedfelix.com/linux/linux-midi.html
+check kernel with uname -a -> SMP PREEMPT_DYNAMIC; looks good, however I don't know whether it's turned on, or configured for 1000Hz.
+
+no mic /speaker on assassin, HDMI output
+ALSA output error (snd_pcm_open): Device or resource busy
+
+JACK
+with ALSA playback usually only from one application, e.g. if Audio is in pd turned on, no sound from firefox.
+jack works fine with pipewire, but it's better to stop the latter.
+installed jack2, a2jmidid, jack2-dbus, qjackctl
+
+identify card /device with aplay -l "hw:0,3"
+error: Failed to open server, does not start with systemctl either
+ATTENTION: The playback device "hw:0" is already in use. Please stop the application using it and run JACK again Released audio card Audio0

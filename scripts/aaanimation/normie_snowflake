@@ -1,0 +1,73 @@
+#!/usr/bin/perl
+#
+use strict;
+use warnings;
+use Curses;	# don't need Curses, but for halfdelay and getch;
+use Term::Animation;
+use Term::Animation::Entity;	
+# callback routine controls position and frame of object and is called each time animation is called.
+# default callback routine = move_entity
+
+main();
+
+sub add_snowflake {
+	my ($anim) = @_;	# array @_ contains the parameters passed to subroutine;
+
+	my $snowflake = $anim->new_entity(
+	shape         => "*",	
+	position      => [5, 3, 9],	# row / column / depth	
+	callback_args => [1, 0, 0, 0],	
+	default_color => 'w', 	
+	wrap          => 1, 
+	physical      => 1,
+		);
+}
+
+sub main {
+	my $anim = Term::Animation->new();	
+	$anim->color(1);
+	# set delay for getch;
+	halfdelay(3);	
+
+# while loop runs as long condition is true;
+while(1) {
+	my $snowflake = add_snowflake($anim);
+# animation loop;
+	while(1) {
+		$anim->animate();
+		my $input = getch(); 
+		if($input eq 'q') { quit(); } # 'q' adds another entity; 
+	}
+}
+$anim->end(); 
+}
+ 
+
+
+
+
+	#$anim->gen_path => ( 5,3,8,  10,6,16, [ 1, 2, 0, 2 ], 'longest' );
+
+
+	# gen_path (x,y,z, x,y,z, [ frame_pattern ], [ steps ]), goes along with default callback; 
+# How to declare?
+# $calar variables
+ 	# my $x1=5;
+	# my $y1=3;
+	# my $z1=9;
+	# my $x2=10;
+	# my $y2=9;
+	# my $z2=1;
+# @rray variables (randomly ordered)
+	# @start =  
+	
+	#	gen_path => ( $x1, $y1, $z1, $x2, $y2, $z2, [ 1, 2, 0, 2 ], 'longest' );
+
+
+
+
+
+
+
+
+

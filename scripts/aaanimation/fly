@@ -1,0 +1,77 @@
+#!/usr/bin/perl
+#
+use strict;
+use warnings;
+use Curses;
+use Term::Animation;
+
+main();
+
+sub add_fly {
+	my ($anim) = @_;		
+	
+	my $fly = $anim->new_entity(
+	shape			=> "*",	
+	position      		=> [5, 9, 7],	# row / column / depth
+	callback 		=> \&random_movement,
+	wrap          		=> 1, 
+	physical      		=> 1,
+	collision_handler 	=> \&animal_collision,         
+	auto_trans 		=> 1 
+	# any whitespace before the first non-whitespace in a line should be transparent? maybe good for collision?
+	);
+}
+
+sub random_movement {
+	my ($fly, $anim) = @_;
+
+	# get the current position of the entity	
+	my ($x, $y, $z) = $fly->position();
+
+	# we'll use callback_args to store the last axis we moved in
+	my $last_move = $fly->callback_args();
+	# if we moved in x last time, move in y this time
+	if($last_move eq 'x') {         
+		     $fly->callback_args('y');
+# move by -1, 0 or 1
+$y += int(rand(3)) - 1;      
+	} else {         
+		$fly->callback_args('x');  
+	$x += int(rand(3)) - 1;      
+}     
+
+	# return the absolute x,y,z coordinates to move to (return value is always the last calculation performed), this case does not include $frame;
+	return ($x, $y, $z);
+}
+
+sub main {
+	my $anim = Term::Animation->new();	
+	$anim->color( 1 );
+	# set delay for getch;
+	halfdelay( 3 );
+
+# while loop runs as long condition is true;
+while(1) {
+	my $fly = add_fly($anim);
+
+		while(1) {		
+		$anim->animate();
+		my $input = getch();
+		if($input eq 'q') { quit(); }	
+		}
+	}
+$anim->end();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

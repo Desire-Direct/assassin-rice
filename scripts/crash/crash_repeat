@@ -20,45 +20,48 @@ while (<$CRASH>) {
 # match operator // does not search for /string/ as a ()hole, but (un)matches patterns of indivisible atoms; note that SPACE IS also a character;
 # #atomization
 # to ignore blank space >1, use /\s+/ operator; however, with the split 'onwhitespace' function, punctuation and thus possessive forms of words remain, e.g. single standing vaughan would appear x353 only; 
-# use /\w+/g to evade punctuation, prints only alphanumeric patterns +_; 
+
+	# use /\w+/g to evade punctuation, prints alphanumeric patterns +_ only; 
 	# lc function turns all upper- into lowercase letters; and then stores them in $1? 
-	$freq{ lc $1 }++ while /(\w+)/g;
-;
+	$freq{ lc $1 }++ while /(\w+)/g;;
+	
+# backreference \ to match double-letters?
+# w is shortcut for [character class] [A-Za-z0-9_] (as of 3rd edition, p. 106);
+# the + is quantifier for discrete items, seperated by spaces; 		
+# g turns any arbitrary whitespace into single space (p.123);
 
-
-				# backreference \ to match double-letters?
-		# w is shortcut for [character class] [A-Za-z0-9_] (as of 3rd edition, p. 106);
-	        # the + is modifier /quantifier? for strings, seperated by spaces; 		
-		# g turns any arbitrary whitespace into single space (p.123);
-
-		#what bout french special characters?
-
-}
+		# what bout french special characters? and new line?
+		}
 
 foreach my $str (reverse sort { $freq{$a} <=> $freq{$b} } keys %freq) 
 {
-	printf {$REPORT} "%-29s %s\n", $str, $freq{$str}; # 29 is the field width between the columns of words and frequency;
+	printf {$REPORT} "%-29s %s\n", $str, $freq{$str}; 
+	# 29 is the field width between the columns of words and their frequency;
 }
 
 close $CRASH;
 close $REPORT;
 print "Job done.\n";
 
-
-
-#	$freq{ lc $1 }++ while (\w+)/g;
-;
-#
-#
-
-
 # Alas, need to keep hyphens in the middle of a string! hyphens are metacharacters to define range inside a [character class: a-z]
 #
 ######TESTS#####
-# /(\w+-\w+)/g; prints all hyphenated words: 477 lines (linebreak?); reveals also I need numerals, e.g. 40-year; middle-aged appears 13 x;
+# /(\w+\-\w+)/g; prints all words with hyphen in the middle: 477 lines (linebreak?); 
+# reveals also I need numerals, e.g. 40-year; 
+# middle-aged appears 13 x; car-crash 22 x;
+# but does only print "ten-to", although it's ten-to-two;
+#
+# according to [A-Za-z0-9-], hyphen appears 952 x;
+
+
 # (\w+\-)/g; prints hyphen-entailed words: 291? lines; middle- appears 14 x, but no aged;
 # (-\w+)/g; other way round prints 373 lines; -aged: 13 x; middle: 0 x;
 # (\w-+)/g; prints single letter followed by hyphen; r- appears 169;
 # (\w+[w-])/g; interesting one, 437 lines; "ow" is most frequently matched (130 x), but otherwise mostly hyphen-entailed strings;
 
+# [A-Za-z0-9-]
+# /letter\-*letter/ * quantifier for 0-any, (TIMES operator in multiplication);
+# /letter.*letter/ "any old junk pattern"
+#
+#
 

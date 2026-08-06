@@ -1,0 +1,19 @@
+# mount encrypted partition
+sudo cryptsetup --type luks open /dev/sdX crypt
+sudo mount -t ext4 /dev/mapper/crypt /mnt/myusb
+
+# unmount encrypted partition
+sudo umount /mnt/myusb
+sudo cryptsetup close crypt
+
+# rsync
+# -P stands for show progress
+rsync -r -P source destination
+
+# LATEX
+think I have only installed texlive-latex that's why biber is not working!!
+
+
+
+
+
